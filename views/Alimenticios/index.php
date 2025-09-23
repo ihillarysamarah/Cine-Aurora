@@ -274,6 +274,11 @@
                                 <td><?= $alimenticios->getId() ?></td>
                                 <td><?= $alimenticios->getDescricao() ?></td>
                                 <td><?= $alimenticios->getValor() ?></td>
+                                <td>
+                                    <a href="edit.php?id=<?= $alimenticios->getId() ?>" title = "Editar"> 
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </table>
