@@ -19,6 +19,7 @@
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <meta name="theme-color" content="#712cf9">
     <link href="../../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -268,6 +269,7 @@
                             <th>ID</th>
                             <th>Descrição</th>
                             <th>Valor</th>
+                            <th>Ações</th>
                         </tr>
                         <?php foreach($dao->read() as $alimenticios) : ?>
                             <tr>
@@ -276,7 +278,10 @@
                                 <td><?= $alimenticios->getValor() ?></td>
                                 <td>
                                     <a href="edit.php?id=<?= $alimenticios->getId() ?>" title = "Editar"> 
-                                        <i class="bi bi-pencil"></i>
+                                        <i class="bi bi-pen"></i>
+                                    </a>
+                                    <a class = "link link-danger" href="destroy.php?id=<?= $alimenticios->getId() ?>" title = "Deletar">
+                                        <i class="bi bi-x-circle"></i>
                                     </a>
                                 </td>
                             </tr>

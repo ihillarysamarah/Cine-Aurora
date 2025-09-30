@@ -1,7 +1,7 @@
 <?php
     require "../../autoload.php";
 
-    $dao = new FornecedorDAO();
+    $dao = new classificacaoIndicativaDAO();
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <meta name="theme-color" content="#712cf9">
     <link href="../../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -262,16 +263,26 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="my-4">
                     <h2>Classificação Indicativa</h2>
-                    <a href="create.php">Nova Classificação Indicativa</a>
+                    <a href="create.php">Nova Classificação</a>
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
                             <th>Descrição</th>
+                            <th>Ações</th>
                         </tr>
                         <?php foreach($dao->read() as $classificacaoIndicativa) : ?>
                             <tr>
-                                <td><?= $fornecedor->getId() ?></td>
-                                <td><?= $fornecedor->getDescricao() ?></td>
+                                <td><?= $classificacaoIndicativa->getId() ?></td>
+                                <td><?= $classificacaoIndicativa->getDescricao() ?></td>
+                                <td>
+                                    <a href="edit.php?id=<?= $classificacaoIndicativa->getId() ?>" title = "Editar"> 
+                                        <i class="bi bi-pen"></i>
+                                    </a>
+                                    <a class = "link link-danger" href="destroy.php?id=<?= $classificacaoIndicativa->getId() ?>" title = "Deletar">
+                                        <i class="bi bi-x-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
                         <?php endforeach ?>
                     </table>
                 </div>

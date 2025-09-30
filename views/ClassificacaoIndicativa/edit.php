@@ -1,9 +1,9 @@
 <?php
-    //Buscar as informações dos alimenticios para atualizar
+    //Buscar as informações dos classificacaoIndicativa$classificacaoIndicativa para atualizar
     require "../../autoload.php";
 
-    $dao = new AlimenticiosDAO();
-    $alimenticios = $dao -> find($_GET['id']);
+    $dao = new ClassificacaoIndicativaDAO();
+    $classificacaoIndicativa = $dao -> find($_GET['id']);
 
 ?>
 <!DOCTYPE html>
@@ -263,17 +263,13 @@
             <?php include "../../sidebar.html" ?>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="my-4">
-                    <h2>Cadastrar Alimenticios</h2>
+                    <h2>Cadastrar classificacao Indicativa</h2>
                     <form action="update.php" method="post">
                         <p class="form-group">
                             <label for="descricao">Descrição</label>
-                            <input type="text" name="descricao" class="form-control" value ="<?= $alimenticios -> getDescricao() ?>">
+                            <input type="text" name="descricao" class="form-control" value ="<?= $classificacaoIndicativa -> getDescricao() ?>">
                         </p>
-                        <p class="form-group">
-                            <label for="valor">Valor</label>
-                            <input type="text" name="valor" class="form-control" value = "<?= $alimenticios -> getValor() ?>">
-                        </p>
-                           <input type="hidden" name="id" value = "<?= $alimenticios -> getId() ?>">
+                           <input type="hidden" name="id" value = "<?= $classificacaoIndicativa -> getId() ?>">
                         <p class="form-group">
                             <input type="reset" value="Limpar" class="btn btn-default">
                             <input type="submit" value="Salvar" class="btn btn-primary">

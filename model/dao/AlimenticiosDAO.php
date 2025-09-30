@@ -45,25 +45,22 @@
         
         public function find($id) {
             try {
-                $query = BD::getConexao()->prepare("SELECT * FROM alimenticios WHERE id_alimenticios = :i");
-                $query -> bindValue(':a', $id, PDO::PARAM_INT);
+                $query = BD::getConexao()->prepare("SELECT * FROM alimenticios WHERE idalimenticios = :i");
+                $query -> bindValue(':i', $id, PDO::PARAM_INT);
 
                 
 
                 if(!$query->execute())
                     print_r($query->errorInfo());
 
-                $alimenticiosF = array();
-                foreach($query->fetchAll(PDO::FETCH_ASSOC) as $linha) {
-                    $alimenticios = new alimenticios();
-                    $alimenticios->setId($linha['idalimenticios']);
-                    $alimenticios->setDescricao($linha['descricao']);
-                    $alimenticios->setValor($linha['valor']);
+                //$alimenticiosF = array();
+                $linha = $query->fetch(PDO::FETCH_ASSOC);
+                $alimenticios = new alimenticios();
+                $alimenticios->setId($linha['idalimenticios']);
+                $alimenticios->setDescricao($linha['descricao']);
+                $alimenticios->setValor($linha['valor']);
 
-                    array_push($alimenticiosF,$alimenticios);
-                }
-
-                return $alimenticiosF;
+                return $alimenticios;
             }
             catch(PDOException $e) {
                 echo "Erro #3: " . $e->getMessage();
@@ -75,7 +72,7 @@
                 $query = BD::getConexao()->prepare(
                     "UPDATE alimenticios
                      SET descricao = :d, valor = :v
-                     WHERE id_alimenticios = :i"
+                     WHERE idalimenticios = :i"
                 );
                 $query->bindValue(':d',$alimenticios->getDescricao(), PDO::PARAM_STR);
                 $query->bindValue(':v',$alimenticios->getValor(), PDO::PARAM_STR);
@@ -93,7 +90,7 @@
             try {
                 $query = BD::getConexao()->prepare(
                     "DELETE FROM alimenticios
-                     WHERE id_alimenticios = :i"
+                     WHERE idalimenticios = :i"
                 );
                 $query->bindValue(':i',$id, PDO::PARAM_INT);
 
