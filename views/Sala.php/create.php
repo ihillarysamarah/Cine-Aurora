@@ -255,23 +255,11 @@
             <?php include "../../sidebar.html" ?>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="my-4">
-                    <h2>Cadastrar Fornecedor</h2>
+                    <h2>Cadastrar Sala</h2>
                     <form action="insert.php" method="post">
                         <p class="form-group">
-                            <label for="razao_social">Razão Social</label>
-                            <input type="text" name="razao_social" class="form-control">
-                        </p>
-                        <p class="form-group">
-                            <label for="cnpj">CNPJ</label>
-                            <input type="text" name="cnpj" class="form-control">
-                        </p>
-                        <p class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="text" name="email" class="form-control">
-                        </p>
-                        <p class="form-group">
-                            <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" class="form-control">
+                            <label for="salaChaplin">Sala</label>
+                            <input type="text" name="salaChaplin" class="form-control">
                         </p>
                         <p class="form-group">
                             <input type="reset" value="Limpar" class="btn btn-default">

@@ -3,9 +3,9 @@
 
     // Construir o objeto do Cliente
     $Cliente = new Cliente();
-    $Cliente->setNome($_POST['Nome']);
-    $Cliente->setDt_Nascimento($_POST['dt_Nascimento']);
-    $Cliente->setVendedor_id_vendedor($_POST['Vendedor']);
+    $Cliente->setNome($_POST['nome']);
+    $Cliente->setDt_nascimento($_POST['dt_nascimento']);
+    $Cliente->setVendedor_id_vendedor($_POST['vendedor_id_vendedor']);
 
     // Inserir no Banco de Dados
     $dao = new ClienteDAO();

@@ -31,8 +31,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_cinema`.`sala` (
   `id_sala` INT NOT NULL AUTO_INCREMENT,
-  `Sala Chaplin` VARCHAR(45) NULL,
-  `Sala Sinfonia` VARCHAR(45) NULL,
+  `descricao` VARCHAR(45) NULL,
   PRIMARY KEY (`id_sala`))
 ENGINE = InnoDB;
 

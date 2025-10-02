@@ -271,11 +271,7 @@
                         </p>
                         <p class="form-group">
                             <label for="dt_nascimento">Data de Nascimento</label>
-                            <input type="text" name="dt_nascimento" class="form-control" value = "<?= $cliente -> getDt_Nascimento() ?>">
-                        </p>
-                        <p class="form-group">
-                            <label for="vendedor_id_vendedor">Vendedor</label>
-                            <input type="text" name="vendedor_id_vendedor" class="form-control" value = "<?= $cliente -> getVendedor_id_vendedor() ?>">
+                            <input type="date" name="dt_nascimento" class="form-control" value = "<?= $cliente -> getDt_nascimento() ?>">
                         </p>
                            <input type="hidden" name="id" value = "<?= $cliente -> getId() ?>">
                         <p class="form-group">

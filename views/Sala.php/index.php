@@ -1,7 +1,7 @@
 <?php
     require "../../autoload.php";
 
-    $dao = new FornecedorDAO();
+    $dao = new SalaDAO();
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <meta name="theme-color" content="#712cf9">
     <link href="../../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -261,23 +262,26 @@
             <?php include "../../sidebar.html" ?>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="my-4">
-                    <h2>Fornecedores</h2>
-                    <a href="create.php">Novo Fornecedor</a>
+                    <h2>Sala de Exibição</h2>
+                    <a href="create.php">Nova Sala</a>
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>Razão Social</th>
-                            <th>CNPJ</th>
-                            <th>E-mail</th>
-                            <th>Telefone</th>
+                            <th>Descrição</th>
+                            <th>Ações</th>
                         </tr>
-                        <?php foreach($dao->read() as $fornecedor) : ?>
+                        <?php foreach($dao->read() as $sala) : ?>
                             <tr>
-                                <td><?= $fornecedor->getId() ?></td>
-                                <td><?= $fornecedor->getRazaoSocial() ?></td>
-                                <td><?= $fornecedor->getCNPJ() ?></td>
-                                <td><?= $fornecedor->getEmail() ?></td>
-                                <td><?= $fornecedor->getTelefone() ?></td>
+                                <td><?= $sala->getId() ?></td>
+                                <td><?= $sala->getDescricao() ?></td>
+                                <td>
+                                    <a href="edit.php?id=<?= $sala->getId() ?>" title = "Editar"> 
+                                        <i class="bi bi-pen"></i>
+                                    </a>
+                                    <a class = "link link-danger" href="destroy.php?id=<?= $sala->getId() ?>" title = "Deletar">
+                                        <i class="bi bi-x-circle"></i>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </table>

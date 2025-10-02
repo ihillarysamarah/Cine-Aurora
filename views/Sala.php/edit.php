@@ -1,3 +1,11 @@
+<?php
+    //Buscar as informações dos sala$sala para atualizar
+    require "../../autoload.php";
+
+    $dao = new salaDAO();
+    $sala = $dao -> find($_GET['id']);
+
+?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 
@@ -255,20 +263,13 @@
             <?php include "../../sidebar.html" ?>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="my-4">
-                    <h2>Cadastrar Cliente</h2>
-                    <form action="insert.php" method="post">
+                    <h2>Cadastrar Sala</h2>
+                    <form action="update.php" method="post">
                         <p class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" name="nome" class="form-control">
+                            <label for="descricao">Sala</label>
+                            <input type="text" name="descricao" class="form-control" value ="<?= $sala -> getDescricao() ?>">
                         </p>
-                        <p class="form-group">
-                            <label for="dt_nascimento">Data de Nascimento</label>
-                            <input type="date" name="dt_nascimento" class="form-control">
-                        </p>
-                        <p class="form-group">
-                            <label for="vendedor_id_vendedor">Vendedor</label>
-                            <input type="text" name="vendedor_id_vendedor" class="form-control">
-                        </p>
+                           <input type="hidden" name="id" value = "<?= $sala -> getId() ?>">
                         <p class="form-group">
                             <input type="reset" value="Limpar" class="btn btn-default">
                             <input type="submit" value="Salvar" class="btn btn-primary">
