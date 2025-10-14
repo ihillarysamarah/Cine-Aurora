@@ -3,6 +3,7 @@
         // Atributos
         private $id;
         private $descricao;
+        private $sala_id_sala; // Associação com a classe POltrona
 
         // Métodos
         public function getId() {
@@ -19,6 +20,14 @@
 
         public function setDescricao($descricao) {
             $this->descricao = $descricao;
+        }
+
+        public function getSala_id_sala(){
+            return $this -> sala_id_sala;
+        }
+
+        public function setSala_id_sala($sala_id_sala){
+            $this -> sala_id_sala = $sala_id_sala;
         }
 
         // Método para retornar uma string do objeto
