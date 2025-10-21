@@ -32,6 +32,6 @@
 
         // Método para retornar uma string do objeto
         public function __toString() {
-            return $this->id;
+            return $this->descricao;
         }
     }

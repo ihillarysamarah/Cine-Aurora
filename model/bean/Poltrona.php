@@ -3,7 +3,7 @@
         //Atributos
         private $id;
         private $num_poltrona;
-        private $sala_id_sala;
+        private $sala; // ASSOCIAÇÃO
 
         //Métodos
         public function getId(){
@@ -22,12 +22,12 @@
             $this -> num_poltrona = $num_poltrona;
         }
 
-        public function getSala_id_sala(){
-            return $this -> sala_id_sala;
+        public function getSala(){
+            return $this -> sala;
         }
 
-        public function setSala_id_sala($sala_id_sala){
-            $this -> sala_id_sala = $sala_id_sala;
+        public function setSala($sala){
+            $this -> sala = $sala;
         }
 
         //Método para retornar um string do objeto
