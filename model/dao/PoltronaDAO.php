@@ -29,14 +29,14 @@
                 foreach($query->fetchAll(PDO::FETCH_ASSOC) as $linha) {
                     // Para a assoiação com a Sala
                     $SalaDAO = new SalaDAO();
-                    $Sala = $SalaDAO -> find($linha['sala_id_sala']);
+                    $sala = $SalaDAO -> find($linha['sala_id_sala']);
 
-                    // Construindo um objeto do produto
+                    // Construindo um objeto do Poltrona
                     $Poltrona = new Poltrona();
                     $Poltrona->setId($linha['id_poltrona']);
                     $Poltrona->setNum_poltrona($linha['num_poltrona']);
                     // Definir o atributo (objeto) Sala
-                    $Poltrona->setSala($Sala);
+                    $Poltrona->setSala($sala);
 
                     array_push($Poltronas,$Poltrona);
                 }
@@ -60,7 +60,7 @@
                 $linha = $query->fetch(PDO::FETCH_ASSOC);
                 // Para a associação com a Sala
                 $PoltronaDAO = new SalaDAO();
-                $Sala = $PoltronaDAO->find($linha['Sala']);
+                $sala = $PoltronaDAO->find($linha['sala_id_sala']);
 
                 // Construindo um objeto da poltrona
                 $Poltrona = new Poltrona();
@@ -81,7 +81,7 @@
             try {
                 $query = BD::getConexao()->prepare(
                     "UPDATE Poltrona
-                     SET num_poltrona = :n, sala_id,sala = :s
+                     SET num_poltrona = :n, sala_id_sala = :s
                      WHERE id_poltrona = :i"
                 );
                 $query->bindValue(':n',$Poltrona->getNum_poltrona(), PDO::PARAM_INT);
@@ -101,7 +101,7 @@
             try {
                 $query = BD::getConexao()->prepare(
                     "DELETE FROM Poltrona
-                     WHERE id_poltrona :i"
+                     WHERE id_poltrona = :i"
                 );
                 $query->bindValue(':i',$id, PDO::PARAM_INT);
 

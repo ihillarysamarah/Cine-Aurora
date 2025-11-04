@@ -5,6 +5,8 @@
     $dao = new PoltronaDAO();
     $Poltrona = $dao -> find($_GET['id']);
 
+    $SalaDAO = new SalaDAO();
+
 ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
@@ -267,16 +269,26 @@
                     <form action="update.php" method="post">
                         <p class="form-group">
                             <label for="num_poltrona">Número da Poltrona</label>
-                            <input type="text" name="num_poltrona" class="form-control" value ="<?= $Poltrona -> getNum_poltrona() ?>">
+                            <input type="int" name="num_poltrona" class="form-control" value ="<?= $Poltrona -> getNum_poltrona() ?>">
                         </p>
-                        <p class="form-group">
+                        
+                         <p class="form-group">
                             <label for="sala_id_sala">Sala</label>
-                            <input type="text" name="sala_id_sala" class="form-control" value = "<?= $Poltrona -> getSala_id_sala() ?>">
-                        </p>
-                           <input type="hidden" name="id" value = "<?= $Poltrona -> getId() ?>">
+                            <select name="sala_id_sala" class="form-control">
+                                <?php foreach($SalaDAO->read() as $sala) : ?>
+                                    <?php if($Poltrona->getSala()->getId() == $sala->getId()) : ?>
+                                        <option selected value="<?= $sala->getId() ?>"><?= $sala->getDescricao() ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $sala->getId() ?>"><?= $sala->getDescricao() ?></option>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </select>
+                         </p>
+                        <input type="hidden" name="id" value="<?= $Poltrona->getId() ?>">
                         <p class="form-group">
                             <input type="reset" value="Limpar" class="btn btn-default">
                             <input type="submit" value="Salvar" class="btn btn-primary">
+                        </p>
                         </p>
                     </form>
                 </div>

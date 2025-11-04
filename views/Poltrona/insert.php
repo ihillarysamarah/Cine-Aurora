@@ -5,10 +5,10 @@
     $Poltrona = new Poltrona();
     $Poltrona->setNum_poltrona($_POST['num_poltrona']);
 
-    $Sala = new Sala();
-    $Sala->setId($_POST['Sala']);
+    $sala = new sala();
+    $sala->setId($_POST['Sala']);
 
-    $Poltrona->setSala($Sala);
+    $Poltrona->setSala($sala);
 
     // Inserir no Banco de Dados
     $dao = new PoltronaDAO();

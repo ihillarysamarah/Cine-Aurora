@@ -2,7 +2,8 @@
     require "../../autoload.php";
 
     $SalaDAO = new SalaDAO();
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 
 <head>
