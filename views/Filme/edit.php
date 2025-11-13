@@ -1,9 +1,9 @@
 <?php
-    //Buscar as informações dos cliente para atualizar
+    //Buscar as informações dos Filme para atualizar
     require "../../autoload.php";
 
-    $dao = new ClienteDAO();
-    $cliente = $dao -> find($_GET['id']);
+    $dao = new FilmeDAO();
+    $Filme = $dao -> find($_GET['id']);
 
 ?>
 <!DOCTYPE html>
@@ -263,17 +263,18 @@
             <?php include "../../sidebar.html" ?>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="my-4">
-                    <h2>Editar Cliente</h2>
+                    <h2>Editar Filme</h2>
                     <form action="update.php" method="post">
                         <p class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" name="nome" class="form-control" value ="<?= $cliente -> getNome() ?>">
+                            <label for="nomef">Nome</label>
+                            <input type="text" name="nome" class="form-control" value ="<?= $Filme -> getNomefilme() ?>">
                         </p>
                         <p class="form-group">
-                            <label for="dt_nascimento">Data de Nascimento</label>
-                            <input type="date" name="dt_nascimento" class="form-control" value = "<?= $cliente -> getDt_nascimento() ?>">
+                            <label for="duracao">Duração</label>
+                            <input type="text" name="duracao" class="form-control" value = "<?= $Filme -> getDuracao() ?>">
                         </p>
-                           <input type="hidden" name="id" value = "<?= $cliente -> getId() ?>">
+                        <p class="form-group">
+                           <input type="hidden" name="id" value = "<?= $Filme -> getId() ?>">
                         <p class="form-group">
                             <input type="reset" value="Limpar" class="btn btn-default">
                             <input type="submit" value="Salvar" class="btn btn-primary">

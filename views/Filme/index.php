@@ -1,11 +1,9 @@
 <?php
-    //Buscar as informações dos cliente para atualizar
     require "../../autoload.php";
 
-    $dao = new ClienteDAO();
-    $cliente = $dao -> find($_GET['id']);
-
+    $dao = new FilmeDAO();
 ?>
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 
@@ -21,6 +19,7 @@
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <meta name="theme-color" content="#712cf9">
     <link href="../../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -263,22 +262,35 @@
             <?php include "../../sidebar.html" ?>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="my-4">
-                    <h2>Editar Cliente</h2>
-                    <form action="update.php" method="post">
-                        <p class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" name="nome" class="form-control" value ="<?= $cliente -> getNome() ?>">
-                        </p>
-                        <p class="form-group">
-                            <label for="dt_nascimento">Data de Nascimento</label>
-                            <input type="date" name="dt_nascimento" class="form-control" value = "<?= $cliente -> getDt_nascimento() ?>">
-                        </p>
-                           <input type="hidden" name="id" value = "<?= $cliente -> getId() ?>">
-                        <p class="form-group">
-                            <input type="reset" value="Limpar" class="btn btn-default">
-                            <input type="submit" value="Salvar" class="btn btn-primary">
-                        </p>
-                    </form>
+                    <h2>Filmes</h2>
+                    <a href="create.php">Novo Filme</a>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Duração</th>
+                            <th>Sala</th>
+                            <th>Classificação Indicativa</th>
+                            <th>Ações</th>
+                        </tr>
+                        <?php foreach($dao->read() as $sala) : ?>
+                            <tr>
+                                <td><?= $sala->getId() ?></td>
+                                <td><?= $sala->getNomefilme() ?></td>
+                                <td><?= $sala->getDuracao() ?></td>
+                                <td><?= $sala->getSala_id_sala() ?></td>
+                                <td><?= $sala->getClassificacaoIndicativa_idclassificacaoIndicativa() ?></td>
+                                <td>
+                                    <a href="edit.php?id=<?= $sala->getId() ?>" title = "Editar"> 
+                                        <i class="bi bi-pen"></i>
+                                    </a>
+                                    <a class = "link link-danger" href="destroy.php?id=<?= $sala->getId() ?>" title = "Deletar">
+                                        <i class="bi bi-x-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </table>
                 </div>
             </main>
         </div>

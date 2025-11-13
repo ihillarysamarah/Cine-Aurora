@@ -1,0 +1,74 @@
+<?php
+    class Compra_has_alimenticiosDAO {
+        public function create($Compra_has_alimenticios) {
+            try {
+                $query = BD::getConexao()->prepare(
+                    "INSERT INTO Compra_has_alimenticios(getCompra_id_compra, getAlimenticios_idalimenticios) 
+                     VALUES (:c, :a,)"
+                );
+                
+                // Bind para as chaves estrangeiras
+                $query->bindValue(':c',$Compra_has_alimenticios->getCompra()->getId(), PDO::PARAM_INT);
+                $query->bindValue(':a',$Compra_has_alimenticios->getAlimenticios()->getId(), PDO::PARAM_INT);
+
+                if(!$query->execute())
+                    print_r($query->errorInfo());
+            }
+            catch(PDOException $e) {
+                echo "Erro #1: " . $e->getMessage();
+            }
+        }
+
+        // Método read deverá filtrar Alimenticioss a partir de um id de compra
+        public function read($idCompra) {
+            try {
+                $query = BD::getConexao()->prepare("SELECT * FROM Compra_has_alimenticios WHERE getCompra_id_compra = :c");
+                $query->bindValue(':c',$idCompra, PDO::PARAM_INT);                
+
+                if(!$query->execute())
+                    print_r($query->errorInfo());
+
+                $Compra_has_alimenticioss = array();
+                foreach($query->fetchAll(PDO::FETCH_ASSOC) as $linha) {
+                    // Para a associação com o Alimenticios
+                    $AlimenticiosDAO = new AlimenticiosDAO();
+                    $Alimenticios = $daoAlimenticios->find($linha['getAlimenticios_idalimenticios']);  
+                    $Compra = new Compra();
+                    $Compra->setId($idCompra);                  
+
+                    // Construindo um objeto do compra
+                    $Compra_has_alimenticios = new Compra_has_alimenticios();
+                    $Compra_has_alimenticios->setCompra($compra);                    
+                    $Compra_has_alimenticios->setAlimenticios($Alimenticios);
+
+                    $Compra_has_alimenticios->setValorUnitario($linha['valor_unitario_compra']);
+                    $Compra_has_alimenticios->setQuantidade($linha['quantidade']);
+
+                    array_push($Compra_has_alimenticioss,$Compra_has_alimenticios);
+                }
+
+                return $Compra_has_alimenticioss;
+            }
+            catch(PDOException $e) {
+                echo "Erro #2: " . $e->getMessage();
+            }
+        }
+
+        // Método destroy irá apagar um registro a partir da combinação das duas chaves primárias
+        public function destroy($idCompra, $idAlimenticios) {
+            try {
+                $query = BD::getConexao()->prepare(
+                    "DELETE FROM Compra_has_alimenticios 
+                     WHERE getCompra_id_compra = :c and getAlimenticios_idalimenticios = :p"
+                );
+                $query->bindValue(':c',$idCompra, PDO::PARAM_INT);
+                $query->bindValue(':p',$idAlimenticios, PDO::PARAM_INT);
+
+                if(!$query->execute())
+                    print_r($query->errorInfo());
+            }
+            catch(PDOException $e) {
+                echo "Erro #5: " . $e->getMessage();
+            }
+        }
+    }
