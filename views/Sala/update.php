@@ -3,7 +3,7 @@
 
     // Construir o objeto do sala
     $sala = new sala();
-    $sala->setSalaChaplin($_POST['salaChaplin']);
+    $sala->setDescricao($_POST['descricao']);
     $sala->setId($_POST['id']); 
 
     // Inserir no Banco de Dados

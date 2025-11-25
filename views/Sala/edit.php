@@ -266,7 +266,7 @@
                     <h2>Cadastrar Sala</h2>
                     <form action="update.php" method="post">
                         <p class="form-group">
-                            <label for="descricao">Sala</label>
+                            <label for="descricao">Nome da Sala</label>
                             <input type="text" name="descricao" class="form-control" value ="<?= $sala -> getDescricao() ?>">
                         </p>
                            <input type="hidden" name="id" value = "<?= $sala -> getId() ?>">

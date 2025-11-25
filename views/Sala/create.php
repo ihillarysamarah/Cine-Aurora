@@ -258,7 +258,7 @@
                     <h2>Cadastrar Sala</h2>
                     <form action="insert.php" method="post">
                         <p class="form-group">
-                            <label for="salaChaplin">Sala Chaplin</label>
+                            <label for="salaChaplin">Nome da Sala</label>
                             <input type="text" name="salaChaplin" class="form-control">
                         </p>
                         <p class="form-group">
